@@ -133,6 +133,14 @@ fn main() {
 
 
 
-    
+    // References to Slices and Trait Objects
+
+    // The references we've seen so far are simple addresses. Rust also includes two kinds of 'fat pointers', two-word values carrying the address of some value, along with some further info necessary to put the value to use.
+
+    // A reference to a slice is a fat pointer, carrying the starting address of the slice and its length. Refer to chap 3, pg 105 for slice review.
+
+    // Rust's other kind of fat pointer is a trait object, a reference to a value that implements a certain trait. A trait object carries a value's address and a pointer to the trait's implementation appropriate to that value, for invoking the trait's methods. More on this in "Trait Objects" in chapter 11.
+
+    // Aside from carrying this extra data, slice and trait object references behave just like the other sorts of references we've shown so far in this chapter. THey don't own their referents, they are not allowed to outlive their referents, they may be mutable or shared, and so on.
 
 }
