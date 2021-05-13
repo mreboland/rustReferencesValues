@@ -105,4 +105,16 @@ fn main() {
     assert!(rx == ry); // their referents are equal
     assert!(!std::ptr::eq(rx, ry)); // but occupy different addresses
 
+
+
+    // References Are Never Null
+
+    // Rust references are never null. There is no default initial value for a reference (We can't use any variable until it's been initialized, regardless of its type). Rust also won't convert integers to references (outside of unsafe code), so we can't convert zero into a reference.
+
+    // In Rust, if we need a value that is either a reference to something or not, use the type Option<&T>. At the machine level, Rust represents None as a null pointer, and Some(r), where r is a &T value, as the nonzero address. Option<&T> is just as efficient as a nullable pointer in c or c++, even though it's safe. Its type requires us to check whether it's None before we can use it.
+
+
+
+    
+
 }
