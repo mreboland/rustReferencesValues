@@ -115,6 +115,24 @@ fn main() {
 
 
 
+    // Borrowing References to Arbitrary Expressions
+
+    // Rust lets us borrow a reference to the value of any sort of expression:
+    fn factorial(n: usize) -> usize {
+        (1..n+1).fold(1, |a, b| a * b)
+    }
+
+    let r = &factorial(6);
+    assert_eq!(r + &1009, 1729);
+
+    // In situations as above, Rust creates an anonymous variable to hold the expression's value, and makes the reference point to that. The lifetime of this anon variable depends on what we do with the reference:
+    // 1. If we immediately assign the reference to a variable in a let statement (or make it part of some struct or array that is being immediately assigned), then Rust makes the anon variable live as long as the variable the let initialized. In the preceding example, Rust would do this for the referent of r.
+    // 2. Otherwise, the anon variable lives to the end of the enclosing statement. In our example, the anon variable created to hold 1009 lasts only to the end of the assert_eq! statement.
+
+    // Rust will never let us write code that would produce a dangling reference. If the reference could ever be used beyond the anon variable's lifetime, Rust will always report the problem to you at compile time. We can then fix our code to keep the referent in a named variable with an appropriate lifetime.
+
+
+
     
 
 }
