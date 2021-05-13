@@ -52,4 +52,18 @@ fn main() {
     // In Rust, we use the & and * operators to create and follow references, with the exception of the . operator, which borrows and dereferences implicitly.
 
 
+
+    // Assigning References
+
+    // Assigning to a Rust reference makes it point at a new value:
+    let x = 10;
+    let y = 20;
+    let mut r = &x;
+
+    if b { r = &y; }
+
+    assert!(*r ==10 || *r == 20);
+
+    // The reference r initially points to x. But if b is true, the code points it at y instead (see page 160 for diagram).
+
 }
