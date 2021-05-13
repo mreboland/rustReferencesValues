@@ -66,4 +66,25 @@ fn main() {
 
     // The reference r initially points to x. But if b is true, the code points it at y instead (see page 160 for diagram).
 
+
+
+    // References to References
+
+    // Rust permits references to references:
+    struct Point { x: i32, y: i32 }
+    let point = Point { x: 1000, y: 729 };
+    let r: &Point = &point;
+    let rr: &&Point = &r;
+    let rrr: &&&Point = &rr;
+
+    // The . operator follows as many references as it takes to find its target:
+    assert_eq!(rrr.y, 729);
+    // See page 161 for diagram to explain
+
+    // The expression rrr.y, guided by the type of rrr, actually traverses three reference to get to the Point before fetching its y field. rrr to rr to r to Point.
+
+
+
+    
+
 }
