@@ -85,6 +85,24 @@ fn main() {
 
 
 
-    
+    // Comparing References
+
+    // Like the . operator, Rust's comparison operators "see through" any number of references, as long as both operands have the same type:
+
+    let x = 10;
+    let y = 10;
+
+    let rx = &x;
+    let ry = &y;
+
+    let rrx = &rx;
+    let rry = &ry;
+
+    assert!(rrx <= rry);
+    assert!(rrx == rry);
+
+    // The final assertion here succeeds, even though rrx and rry point at different values (namely, rx and ry), because the == operator follows all the references and performs the comparison on their final targets, x and y. If you want to know whether two references point ot the same memory, we can use std::ptr::eq, which compares them as addresses:
+    assert!(rx == ry); // their referents are equal
+    assert!(!std::ptr::eq(rx, ry)); // but occupy different addresses
 
 }
